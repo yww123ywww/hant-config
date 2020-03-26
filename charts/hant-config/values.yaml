@@ -14,7 +14,7 @@ preJob:
   preInitDB:
     enable: false
     datasource:
-      url: jdbc:mysql://db.hzero.org:3306/hzero_governance?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://db.hzero.org:3306/hzero_admin?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: hzero
       password: hzero
 
@@ -41,7 +41,16 @@ env:
     # Redis Port
     SPRING_REDIS_PORT: 6379
     # Redis DB
-    SPRING_REDIS_DATABASE: 1
+    SPRING_REDIS_DATABASE: 4
+    # 资源池中最大连接数
+    # 默认8，-1表示无限制；可根据服务并发redis情况及服务端的支持上限调整
+    SPRING_REDIS_POOL_MAX_ACTIVE: 50
+    # 资源池运行最大空闲的连接数
+    # 默认8，-1表示无限制；可根据服务并发redis情况及服务端的支持上限调整，一般建议和max-active保持一致，避免资源伸缩带来的开销
+    SPRING_REDIS_POOL_MAX_IDLE: 50
+    # 当资源池连接用尽后，调用者的最大等待时间(单位为毫秒)
+    # 默认 -1 表示永不超时，设置5秒
+    SPRING_REDIS_POOL_MAX_WAIT: 5000
     # Hystrix 熔断超时时间
     HYSTRIX_COMMAND_TIMEOUT_IN_MILLISECONDS: 40000
     # Ribbon 读取超时时间

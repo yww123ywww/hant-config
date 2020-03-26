@@ -82,19 +82,6 @@ mybatis:
   configuration:
     mapUnderscoreToCamelCase: true
 
-hzero:
-  config:
-    enable-governance: false
-    product-code: ${PRODUCT_CODE:HZERO}
-    product-env-code: ${PRODUCT_CODE:HZERO}-ENV
-    route:
-      skip-parse-services: register, gateway, oauth
-  resource:
-    # 匹配的资源才会解析JwtToken便于得到UserDetails
-    pattern: ${HZERO_RESOURCE_PATTERN:/v1/*,/hzero/*,/hcnf/v1/*,/hcnf/hzero/*}
-  modular:
-    enable: false
-
 logging:
   level:
     org.apache.ibatis: ${LOG_LEVEL:info}
